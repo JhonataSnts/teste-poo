@@ -2,12 +2,15 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Pagamentos\Cartao;
+
+use App\Pagamentos\Pix;
 use App\Pedido;
 
 
-$cartao = new Cartao();
-$pedido = new Pedido($cartao, 100.00);
-
-$pedido->finalizar();
-
+$pix = new Pix();
+try {
+    $pedido = new Pedido($pix, -100.00);
+    $pedido->finalizar();
+} catch (\InvalidArgumentException $e) {
+    echo "Erro: " . $e->getMessage();
+}

@@ -8,6 +8,9 @@ class Cartao implements Pagamento
 {
     public function pagar(float $valor): void
     {
-        echo "Pagamento de R$ {$valor} realizado via Cartão.";
+        $taxa = $valor * 0.05;
+        $total = $valor + $taxa;
+
+        echo "Pagamento de R$ {$valor} realizado via Cartão. Taxa de R$ {$taxa} aplicada. Total: R$ {$total}.";
     }
 }
