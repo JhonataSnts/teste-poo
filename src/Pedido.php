@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contratos\Pagamento;
+use App\Exceptions\ValorPedidoInvalidoException;
 
 class Pedido
 {
@@ -12,7 +13,7 @@ class Pedido
     public function __construct(Pagamento $pagamento, float $valor)
     {
         if ($valor <= 0) {
-            throw new \InvalidArgumentException("O valor do pedido deve ser maior que zero.");
+            throw new ValorPedidoInvalidoException("O valor do pedido deve ser maior que zero.");
         }
         $this->valor = $valor;
         $this->pagamento = $pagamento;
